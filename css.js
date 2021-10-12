@@ -3,6 +3,14 @@ $("body").addClass("w3-dark-gray");
 
 $("#message").addClass("w3-panel w3-red");
 
-$(".content-row").addClass("w3-row-padding w3-teal");
+$("main").addClass("w3-BlueGray");
 
-$(".item").addClass("w3-panel s4 w3-col");
+$("section").addClass("w3-hover-shadow w3-container-4 w3-threequarter w3-LightGray");
+
+$("aside").add("float","right")
+
+$("iframe").addClass("w3-panel")
+$("iframe").css("height","35vh")
+$("iframe").attr({
+    "width":"100%","height":"100%"
+  })
