@@ -11,6 +11,9 @@ $("aside").add("float","right")
 
 $("iframe").addClass("w3-panel")
 $("iframe").css("height","35vh")
-$("iframe").attr({
-    "width":"100%","height":"100%"
-  })
+$("iframe").attr({"width":"100%","height":"100%"});
+
+$("#gallery").addClass("w3-bar")
+$("#gallery").css("height","10%")
+$("#gallery svg").addClass("w3-bar-item")
+  
