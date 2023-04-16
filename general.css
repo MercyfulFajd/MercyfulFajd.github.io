@@ -1,0 +1,27 @@
+body {
+    background-color: darkslategrey;
+    font-size: 14px;
+    line-height: 16px;
+    font-family: "Garamond", "Arial", serif;
+  }
+  
+  img {
+    border-radius: 1em;
+    width: 100%;
+  }
+  div {
+    padding: 1vw;
+    background-color: lightslategrey;
+    border-radius: 1em;
+    box-shadow: 0em 0.5em 1em 0;
+    transition: 0.3s;
+  }
+  div:hover {
+    box-shadow: 0.5em 1em 1em 0;
+    background-color:darkslategrey;
+  
+  }
+  div p {
+    color: black;
+  }
+  
