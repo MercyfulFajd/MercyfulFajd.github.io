@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="hu-HU">
+    <head>
+        <title>adventCalendar</title>
+        <meta charset="utf-8">
+        <meta name="description" content="Had some freetime">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--CSS--><style>
+            body {
+                background-color: rgb(88, 157, 41);
+                display: grid;
+                place-items: center;
+                
+            }
+            section{
+                display:flex;
+                flex-wrap: wrap;
+                
+                
+            }
+            section div{
+                width: 15%;            
+                padding: 1vh;
+                border: 1px black solid;
+                margin:0.5%;
+            }
+            .open{
+                background-color: green;
+            }
+            .close{
+                background-color: red;
+                opacity: 0.5;
+            }
+            </style>
+        </head>
+<!--HTML-->
+<body><section id="adventCalendar"></section></body>
+
+<!--JAVASCRIPT--><Script>
+//funky
+function nextDay(date){date.setDate(date.getDate() + 1);}
+function mondayificator(date){if (date.getDay() == 6){nextDay(date)};if (date.getDay() == 0){nextDay(date)}return date;} 
+
+
+//consty
+const startDate = new Date("2023-08-20 07:00");
+const goodies = ["",""
+    
+];
+//main
+let pointer = new Date(startDate.getTime());
+let today = new Date();
+pointer = mondayificator(pointer);
+if(today >= startDate){for (let i = 0; i<goodies.length; i++){
+    const entry = {
+    content: goodies[i],
+    open: pointer > today  ? "close":"open",
+    outputy: function() {document.getElementById("adventCalendar").innerHTML = document.getElementById("adventCalendar").innerHTML+ "<div class='"+entry.open+"'>"+entry.content+pointer+"</div>";}
+    }
+    entry.outputy()
+    nextDay(pointer);
+    pointer = mondayificator(pointer);
+    
+}}
+else{
+    document.getElementById("adventCalendar").innerHTML = "Nincs még itt semmi!";
+    
+
+
+}
+</Script>
+
