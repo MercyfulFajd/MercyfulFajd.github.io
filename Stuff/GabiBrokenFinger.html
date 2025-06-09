@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     
+    <meta charset="UTF-8">
+      <title>Gabinak eltört egy ujja</title>
+      <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+        }
+
+        h1 {
+            color: #5a2a27;
+        }
+
+        input,
+        button {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        input {
+            width: 60px;
+        }
+
+        button {
+            background-color: #ff7e5f;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #eb5e3d;
+        }
+
+        .results {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .dice {
+            background: #fff5e1;
+            border: 2px solid #f4a261;
+            border-radius: 10px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #e76f51;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+      <h1>🎲 Gabi kockadobója</h1>
+      <label for="diceCount">Kockák száma</label>
+      <input type="number" id="diceCount" min="1" max="100" value="1">
+      <button onclick="rollDice()">Guri</button>
+
+      <div class="results" id="results"></div>
+
+     
+    <script>
+        function rollDice() {
+            const count = parseInt(document.getElementById('diceCount').value);
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+
+            if (isNaN(count) || count < 1 || count > 100) {
+                resultsDiv.innerHTML = '<p>1 és 100 között kérek számot</p>';
+                return;
+            }
+
+            for (let i = 0; i < count; i++) {
+                const roll = Math.floor(Math.random() * 6) + 1;
+                const die = document.createElement('div');
+                die.className = 'dice';
+                die.textContent = roll;
+                resultsDiv.appendChild(die);
+            }
+        }
+    </script>
+</body>
+
+</html>
