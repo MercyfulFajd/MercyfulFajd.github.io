@@ -1,0 +1,179 @@
+:root {
+    --background: #5A2E1F;
+    --panel: #E8DCC2;
+    --font: #C9643B;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--font);
+    font-family: sans-serif;
+    overflow: hidden;
+}
+
+.card,
+.box,
+.panel {
+    background-color: var(--panel);
+    color: var(--background);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+a {
+    color: var(--font);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--panel);
+}
+
+#navbar {
+    background-color: var(--bg-dark-terracotta, #5A2E1F);
+    padding: 0.5rem 1rem;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-list a {
+    color: var(--beige, #E8DCC2);
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+.nav-list a:hover {
+    color: var(--terracotta-accent, #C9643B);
+}
+
+.nav-list a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0%;
+    height: 2px;
+    background-color: var(--terracotta-accent, #C9643B);
+    transition: width 0.25s ease;
+}
+
+.nav-list a:hover::after,
+.nav-list a.current::after {
+    width: 100%;
+}
+
+.nav-list a.current {
+    color: var(--terracotta-accent, #C9643B);
+    font-weight: 700;
+}
+
+.nav-divider {
+    color: var(--panel);
+    opacity: 0.6;
+    padding: 0 0.5rem;
+    user-select: none;
+}
+
+#voidContainer {
+    position: absolute;
+    width: 100vw;
+    height: 80vh;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.echo {
+    font-family: monospace;
+    background-color: bisque;
+    font-size: 1.2rem;
+    pointer-events: none;
+    max-width: 20vw;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    transition: opacity 0.5s ease;
+    animation: drift 12s ease-in-out infinite;
+    will-change: transform;
+    transform: scale(var(--scale)) rotate(var(--rotation));
+    padding: 1vh;
+}
+
+.echo:hover {
+    transform: scale(1.2) rotate(0deg) !important;
+    z-index: 9999;
+}
+
+
+
+@keyframes drift {
+    0% {
+        transform: translate(0, 0) scale(var(--scale)) rotate(var(--rotation));
+    }
+
+    50% {
+        transform: translate(var(--dx), var(--dy)) scale(var(--scale)) rotate(var(--rotation));
+    }
+
+    100% {
+        transform: translate(0, 0) scale(var(--scale)) rotate(var(--rotation));
+    }
+}
+
+aside {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    pointer-events: auto;
+}
+
+aside input[type="text"] {
+    padding: 12px 16px;
+    font-size: 1.1rem;
+    font-family: monospace;
+    border: 2px solid var(--panel);
+    border-radius: 8px 0 0 8px;
+    background-color: #fff8dc;
+    color: var(--background);
+    outline: none;
+    width: 60%;
+    max-width: 400px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+aside input[type="text"]:focus {
+    border-color: var(--font);
+    box-shadow: 0 0 8px rgba(201, 100, 59, 0.4);
+}
+
+aside button {
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    font-family: monospace;
+    background-color: var(--font);
+    color: var(--panel);
+    border: 2px solid var(--font);
+    border-left: none;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+aside button:hover {
+    background-color: #a9442a;
+    transform: scale(1.05);
+}
