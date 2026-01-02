@@ -15,8 +15,10 @@ My own little corner of the web / Az én kis sarkom a neten
 Today I started building the new version of my personal site.
 I’m experimenting with a dark terracotta theme, a reusable JS‑based navbar, and a Markdown‑powered blog system that fetches this README dynamically.
 Alongside the general framework of the site, I also added an Advent calendar — currently a bit broken and definitely still in need of fixing — but it’s already taking shape.
-
+### /
 Ma elkezdtem építeni a személyes oldalam új verzióját.  
 Sötét terrakotta témával kísérletezem, újrafelhasználható JS‑alapú navigációval, és egy Markdown‑alapú blogrendszerrel, ami dinamikusan tölti be ezt a README‑t.
 A weboldal általános keretrendszere mellett felkerült egy Adventi naptár is — jelenleg még kissé hibás és javításra szorul, de már kezd formát ölteni.
+
+
 ---
