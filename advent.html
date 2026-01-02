@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Adventi Kalendárium</title>
+
+    <!--STÍLUS-->
+    <style>
+        body {
+            margin: 0;
+            background: #f7f6f3;
+            /* off-white */
+        }
+
+        #snow {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            /* behind content */
+            pointer-events: none;
+
+            /* not interactive */
+        }
+
+
+        #calendar {
+            display: grid;
+            gap: 1rem;
+            max-width: 1000px;
+            margin: 2rem auto;
+            perspective: 1000px;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        }
+
+        .window {
+            position: relative;
+            height: 140px;
+            /* balanced size */
+            cursor: not-allowed;
+            transform-style: preserve-3d;
+            transition: transform 0.8s ease;
+        }
+
+        .window-face {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+            font-weight: bold;
+            font-size: 0.95rem;
+            text-align: center;
+            border: 2px solid #999;
+            border-radius: 8px;
+            backface-visibility: hidden;
+
+            /* Prevent overflow */
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
+            /* allow wrapping */
+            overflow: hidden;
+            /* hide overflow */
+            text-overflow: ellipsis;
+            /* add … if too long */
+        }
+
+        .window-face.front {
+            background: #ddd;
+        }
+
+        .window.openable .window-face.front {
+            background: #fffbe6;
+            border-color: #cc9900;
+            cursor: pointer;
+        }
+
+        .window-face.back {
+            background: #f7f6f3;
+            transform: rotateY(180deg);
+        }
+
+        .window.opened {
+            transform: rotateY(-160deg);
+        }
+    </style>
+
+    <!--FAVICON-->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,
+  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'>
+    <rect width='64' height='64' fill='%23000000'/>
+    <polygon points='32,10 20,30 44,30' fill='%23008000'/>
+    <polygon points='32,20 16,44 48,44' fill='%23008000'/>
+    <polygon points='32,30 12,58 52,58' fill='%23008000'/>
+    <rect x='28' y='58' width='8' height='6' fill='%238B4513'/>
+  </svg>">
+
+    <!--JAVASCRIPT-->
+    <script defer>
+        document.addEventListener("DOMContentLoaded", () => {
+            const canvas = document.getElementById("snow");
+            const ctx = canvas.getContext("2d");
+
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener("resize", resize);
+
+            const flakes = [];
+            const colors = ["#000000", "#7a7a7a"];
+
+            // Step 1: place random dots
+            const count = 80;
+            for (let i = 0; i < count; i++) {
+                flakes.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: 2 + Math.random() * 2,
+                    speed: 0.5 + Math.random() * 1,
+                    swayPhase: Math.random() * Math.PI * 2,
+                    color: colors[Math.floor(Math.random() * colors.length)]
+                });
+            }
+
+            function drawFlakes() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (const f of flakes) {
+                    ctx.fillStyle = f.color;
+                    ctx.beginPath();
+                    ctx.arc(f.x, f.y, f.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            // Initial static draw
+            drawFlakes();
+
+            // Step 2: animate with downward + pendulum sway
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (const f of flakes) {
+                    f.y += f.speed;
+                    f.x += Math.sin(f.swayPhase) * 0.3;
+                    f.swayPhase += 0.02;
+
+                    if (f.y > canvas.height + f.size) {
+                        f.y = -f.size;
+                        f.x = Math.random() * canvas.width;
+                    }
+
+                    ctx.fillStyle = f.color;
+                    ctx.beginPath();
+                    ctx.arc(f.x, f.y, f.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                requestAnimationFrame(animate);
+            }
+
+            // Start animation after a short pause
+            setTimeout(() => animate(), 1000);
+        });
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // Configurable end date (e.g. Christmas Eve)
+            const Start_DATE = new Date(2026, 1, 1); // Dec 24, 2025
+
+            // Your goodies list (any length)
+            const goodies = [
+                { label: "Donkey", link: "https://photos.app.goo.gl/KUiNqTqCEMw7T5Aj9" },
+                { label: "Cookie", link: "https://example.com/day2" },
+                { label: "Tea", link: "https://example.com/day3" },
+                { label: "Candle", link: "https://example.com/day4" },
+                { label: "Ornament", link: "https://example.com/day5" },
+                { label: "Story", link: "https://example.com/day6" },
+                { label: "Music", link: "https://example.com/day7" },
+                { label: "Gift Card", link: "https://example.com/day8" },
+                { label: "Puzzle", link: "https://example.com/day9" },
+                { label: "Hot Cocoa", link: "https://example.com/day10" },
+                { label: "Socks", link: "https://example.com/day11" },
+                { label: "Mug", link: "https://example.com/day12" },
+                { label: "Snow Globe", link: "https://example.com/day13" },
+                { label: "Wreath", link: "https://example.com/day14" },
+                { label: "Lights", link: "https://example.com/day15" },
+                { label: "Carols", link: "https://example.com/day16" },
+                { label: "Movie Night", link: "https://example.com/day17" },
+                { label: "Gingerbread", link: "https://example.com/day18" },
+                { label: "Santa Hat", link: "https://example.com/day19" },
+                { label: "Reindeer Antlers", link: "https://example.com/day20" },
+                { label: "Holiday Card", link: "https://example.com/day21" },
+                { label: "Snowman Kit", link: "https://example.com/day22" },
+                { label: "Festive Playlist", link: "https://example.com/day23" },
+                { label: "New Year's Eve Plan", link: "https://example.com/day24" },
+                { label: "Bonus Surprise", link: "https://example.com/bonus" },
+                { label: "Extra Treat", link: "https://example.com/extra" },
+                { label: "Holiday Recipe", link: "https://example.com/recipe" },
+                { label: "Winter Walk", link: "https://example.com/walk" },
+                { label: "Cozy Blanket", link: "https://example.com/blanket" },
+                { label: "Fireplace Story", link: "https://example.com/fireplace" },
+                { label: "Snowflake Craft", link: "https://example.com/craft" }
+
+
+
+
+            ]
+
+            const calendar = document.getElementById("calendar");
+            const today = new Date();
+
+            // Work out the first opening date by subtracting (goodies.length - 1) days from END_DATE
+            const firstDate = new Date(Start_DATE);
+            firstDate.setDate(Start_DATE.getDate() - (goodies.length - 1));
+
+            goodies.forEach((g, i) => {
+                // Each window’s date = firstDate + i days
+                const winDate = new Date(firstDate);
+                winDate.setDate(firstDate.getDate() + i);
+
+                const win = document.createElement("div");
+                win.className = "window";
+
+                const front = document.createElement("div");
+                front.className = "window-face front";
+                // Show the unlock date on the closed door
+                front.textContent = winDate.toLocaleDateString("hu-HU", {
+                    month: "short",
+                    day: "numeric"
+                });
+
+                const back = document.createElement("div");
+                back.className = "window-face back";
+                // Show the goodie label inside
+                back.textContent = g.label;
+
+                win.appendChild(front);
+                win.appendChild(back);
+
+                // Unlock if today >= window’s date AND today <= END_DATE
+                if (today >= winDate && today <= Start_DATE) {
+                    win.classList.add("openable");
+
+                    let opened = false;
+                    win.addEventListener("click", () => {
+                        if (!opened) {
+                            win.classList.add("opened"); // first click: swing open
+                            opened = true;
+                        } else {
+                            window.open(g.link, "_blank"); // second click: go to link
+                        }
+                    });
+                }
+
+                calendar.appendChild(win);
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <!-- Background canvas -->
+    <canvas id="snow"></canvas>
+
+    <!-- Tartalom -->
+    <h1>Adventi Kalendárium</h1>
+    <main>
+        <div id="calendar"></div>
+    </main>
+</body>
+
+</html>

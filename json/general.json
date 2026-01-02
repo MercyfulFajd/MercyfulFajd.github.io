@@ -1,0 +1,30 @@
+{
+    "internal": [
+        {
+            "name": "Home",
+            "url": "/"
+        },
+        {
+            "name": "Stuff",
+            "url": "stuff.html"
+        }
+    ],
+    "external": [
+        {
+            "name": "Advent",
+            "url": "advent.html"
+        },
+        {
+            "name": "GitHub",
+            "url": "https://github.com/MercyfulFajd"
+        },
+        {
+            "name": "YouTube",
+            "url": "https://www.youtube.com/channel/UCOVHmUPkT2PPMQRA8-KKneQ"
+        },
+        {
+            "name": "LinkedIn",
+            "url": "https://www.linkedin.com/in/k%C3%A1roly-r%C3%B3bert-b%C3%A1nfai/"
+        }
+    ]
+}
