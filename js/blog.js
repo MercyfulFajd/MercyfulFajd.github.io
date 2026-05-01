@@ -4,3 +4,4 @@ async function loadBlog() {
     const md = await res.text();
     document.getElementById("blog").innerHTML = marked.parse(md);
 } loadBlog();
+console.log("Blog JS loaded.");

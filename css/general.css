@@ -1,9 +1,15 @@
+/* General styles for the website */
+
+/* Color Palette */
 :root {
-    --background: #5A2E1F;
-    --panel: #E8DCC2;
-    --font: #C9643B;
+    --background: rgba(90, 46, 31, 0.95);
+    --panel: rgba(232, 220, 194, 0.9);
+    --font: rgba(201, 100, 59, 0.85);
+    --border: rgba(255, 255, 255, 0.5);
+    --box-shadow: rgba(0, 0, 0, 0.25);
 }
 
+/* Reset and base styles */
 * {
     margin: 0;
     padding: 0;
@@ -14,6 +20,7 @@ body {
     background-color: var(--background);
     color: var(--font);
     font-family: sans-serif;
+    padding: clamp(1rem, 3vw, 2.5rem);
 }
 
 .card,
@@ -23,6 +30,8 @@ body {
     color: var(--background);
     padding: 1rem;
     border-radius: 8px;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 6px var(--box-shadow);
 }
 
 a {
@@ -35,42 +44,38 @@ a:hover {
 }
 
 #navbar {
-    background-color: var(--bg-dark-terracotta, #5A2E1F);
+    background-color: var(--background);
     padding: 0.5rem 1rem;
+}
+.panel ul,
+.panel ol {
+    padding-left: 1.5rem;
 }
 
 /* Horizontal list */
 .nav-list {
     list-style: none;
     display: flex;
+
     gap: 2rem;
-    margin: 0;
-    padding: 0;
 }
 
 /* Links */
 .nav-list a {
-    color: var(--beige, #E8DCC2);
-    text-decoration: none;
     font-weight: 500;
     position: relative;
     transition: color 0.2s ease;
 }
 
-/* Hover gigity */
-.nav-list a:hover {
-    color: var(--terracotta-accent, #C9643B);
-}
-
 /* Underline animation */
 .nav-list a::after {
-    content: "";
+    content: '';
     position: absolute;
     left: 0;
     bottom: -3px;
     width: 0%;
     height: 2px;
-    background-color: var(--terracotta-accent, #C9643B);
+
     transition: width 0.25s ease;
 }
 
@@ -80,7 +85,7 @@ a:hover {
 
 /* Current page highlight */
 .nav-list a.current {
-    color: var(--terracotta-accent, #C9643B);
+    color: var(--terracotta-accent, #c9643b);
     font-weight: 700;
 }
 

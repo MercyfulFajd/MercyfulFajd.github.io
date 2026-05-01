@@ -48,3 +48,4 @@ async function buildNavbar() {
 }
 
 buildNavbar();
+console.log("Navbar JS loaded.");
