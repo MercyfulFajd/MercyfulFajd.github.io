@@ -21,7 +21,7 @@ Long time no free time. Made some touching up with the css, and removed some sil
 Rég nem volt időm-kedvem.
 Most végre jutott egy kevés, úgyhogy kicsit rendbe raktam a CSS‑t, kiszedtem pár hülyeséget, és finomhangoltam a dolgokat.
 
-## Közben elkezdtem dolgozni egy kockadobó alkalmazáson is — lassan alakul.
+Közben elkezdtem dolgozni egy kockadobó alkalmazáson is — lassan alakul.
 
 ### Update — 2026.01.02
 

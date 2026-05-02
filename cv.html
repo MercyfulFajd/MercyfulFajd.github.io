@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Bánfai Károly Róbert – CV</title>
+
+        <style>
+            /* ---------- PRINT SETTINGS ---------- */
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+                font-family: Arial, sans-serif;
+                background: #f5f5f5;
+            }
+            a {
+                color: #ff3b3b;
+                text-decoration: none;
+            }
+            /* ---------- PAGE LAYOUT ---------- */
+            .cv-page {
+                width: 210mm;
+                height: 297mm;
+                margin: 0 auto;
+                display: flex;
+                background: white;
+                overflow: hidden;
+                box-sizing: border-box;
+            }
+            section {
+                margin-bottom: 7mm;
+            }
+
+            /* ---------- LEFT PANEL (FIXED WIDTH) ---------- */
+            .left-panel {
+                width: 68mm; /* FIXED, PRINT-SAFE */
+                height: 100%;
+                background: #111;
+                color: white;
+                padding: 20mm 10mm;
+                box-sizing: border-box;
+                position: relative;
+                overflow: hidden;
+                border-right: 1px solid #222;
+            }
+
+            /* Left panel content */
+            .left-panel h1 {
+                margin: 0;
+                font-size: 22px;
+                position: relative;
+                z-index: 2;
+                letter-spacing: 0.5px;
+            }
+
+            .left-panel h2 {
+                margin: 4px 0 20px;
+                font-size: 14px;
+                color: #ff3b3b;
+                position: relative;
+                z-index: 2;
+            }
+
+            .left-panel .section {
+                margin-bottom: 18px;
+                position: relative;
+                z-index: 2;
+            }
+
+            .left-panel .section h3 {
+                margin: 0 0 6px;
+                font-size: 13px;
+                color: #ff3b3b;
+            }
+
+            .left-panel p {
+                font-size: 11px;
+                line-height: 1.4;
+                margin-bottom: 2mm;
+            }
+
+            /* ---------- RIGHT PANEL ---------- */
+            .right-panel {
+                flex: 1;
+                height: 100%;
+                padding: 10mm;
+                box-sizing: border-box;
+            }
+
+            .right-panel h3 {
+                margin-top: 0;
+                margin-bottom: 3mm;
+                border-bottom: 1px solid #ccc;
+                padding-bottom: 2px;
+            }
+
+            .right-panel ul {
+                margin: 0;
+                padding-left: 18px;
+            }
+
+            .job {
+                margin-bottom: 6px;
+            }
+
+            .job h4 {
+                font-size: 13px;
+                font-weight: bold;
+                color: #333;
+            }
+            .divide {
+                columns: 2;
+                column-gap: 10mm;
+            }
+            .divide li {
+                break-inside: avoid;
+                padding-bottom: 1mm;
+            }
+
+            /* ---------- PRINT COLORS ---------- */
+            @media print {
+                body {
+                    -webkit-print-color-adjust: exact;
+                    print-color-adjust: exact;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="cv-page">
+            <!-- LEFT PANEL -->
+            <div class="left-panel">
+                <h1>Bánfai Károly Róbert</h1>
+                <h2>IT Specialist</h2>
+
+                <div class="section">
+                    <h3>Contact</h3>
+                    <p>Email: karolyrobert82@gmail.com</p>
+                    <p>Phone: +36 30 814 8648</p>
+                    <p>Diósd, Hungary</p>
+                    <p>LinkedIn: www.linkedin.com/in/karolybanfai</p>
+                </div>
+
+                <div class="section">
+                    <h3>Languages</h3>
+                    <p>Hungarian — Native</p>
+                    <p>English — Professional</p>
+                    <p>German — Semi‑Professional</p>
+                </div>
+
+                <div class="section">
+                    <h3>Projects</h3>
+                    <p>
+                        <a href="https://mercyfulfajd.github.io/"
+                            >https://mercyfulfajd.github.io/</a
+                        >
+                        <br />Personal Website
+                    </p>
+                    <p>
+                        <a href="https://fudgeroll.hu">https://fudgeroll.hu</a
+                        ><br />"Hobby/Educational project, web based \"Choose your own adventure\"
+                        style books.(Hungarian)"
+                    </p>
+                </div>
+            </div>
+
+            <!-- RIGHT PANEL -->
+            <div class="right-panel">
+                <section>
+                    <h3>Summary</h3>
+                    <p>
+                        IT Specialist with 7+ years of experience supporting enterprise environments
+                        and helping people solve technical problems. I focus on keeping systems
+                        stable, resolving issues efficiently, and making day‑to‑day operations
+                        smoother for everyone. I’m calm, practical, and easy to work with, and I
+                        take ownership of tasks until they’re fully resolved.
+                    </p>
+                </section>
+
+                <section>
+                    <h3>Skills</h3>
+                    <ul class="divide">
+                        <li>Windows administration</li>
+                        <li>Active Directory & account management</li>
+                        <li>Networking fundamentals (DNS, DHCP, TCP/IP)</li>
+                        <li>Enterprise troubleshooting</li>
+                        <li>Customer support & communication</li>
+                        <li>Incident management</li>
+                        <li>ITIL-based workflows</li>
+                        <li>Remote support tools</li>
+                        <li>Office 365 / Microsoft 365 administration</li>
+                        <li>Hardware & peripheral diagnostics</li>
+                        <li>User onboarding/offboarding</li>
+                        <li>Ticketing systems (Jira, ServiceNow, Topdesk)</li>
+                        <li>B2B portal administration & user lifecycle management</li>
+                        <li>Access control & permission governance</li>
+                        <li>Vendor and partner support coordination</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Experience</h3>
+
+                    <div class="job">
+                        <h4>AVL Hungary Kft. — IT Specialist (2022–Present)</h4>
+                        <ul>
+                            <li>Provide IT support for internal users</li>
+                            <li>Manage accounts and permissions</li>
+                            <li>Troubleshoot hardware and software issues</li>
+                        </ul>
+                    </div>
+
+                    <div class="job">
+                        <h4>Deutsche Telekom — Incident Manager (2021)</h4>
+                        <ul>
+                            <li>Monitor incidents</li>
+                            <li>Coordinate resolution teams</li>
+                        </ul>
+                    </div>
+                    <div class="job">
+                        <h4>Bunzl Continental Europe — Service Desk Technician (2017-2021)</h4>
+                        <ul>
+                            <li>
+                                Provided first‑line IT support for users across multiple European
+                                locations
+                            </li>
+                            <li>
+                                Resolved hardware, software, and account‑related issues in a
+                                high‑volume environment
+                            </li>
+                            <li>
+                                Escalated complex cases to L2/L3 teams and followed them through to
+                                resolution
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Education</h3>
+                    <p>Software Developer (OKJ), Soter-Line — 2021</p>
+                    <p>Network Administrator (OKJ), Ruander — 2017</p>
+                </section>
+            </div>
+        </div>
+    </body>
+</html>

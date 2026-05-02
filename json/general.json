@@ -11,6 +11,10 @@
         {
             "name": "Stuff",
             "url": "stuff.html"
+        },
+        {
+            "name": "I Like HR",
+            "url": "hr.html"
         }
     ],
     "external": [

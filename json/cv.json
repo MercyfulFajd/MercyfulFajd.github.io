@@ -1,0 +1,88 @@
+[
+    {
+        "name": "Bánfai Károly Róbert",
+        "role": "IT Specialist",
+
+        "contact": {
+            "email": "karolyrobert82@gmail.com",
+            "phone": "+36 30 814 8648",
+            "address": "H-2049 Diósd, Szabadság utca 70.",
+            "linkedin": "www.linkedin.com/in/karolybanfai/"
+        },
+
+        "summary": "IT Specialist with 7+ years of experience supporting enterprise environments, troubleshooting complex technical issues, and ensuring smooth day‑to‑day IT operations. Skilled across user support, system administration basics, networking fundamentals, and incident handling. Known for clear communication, structured problem‑solving, and a calm, reliable presence under pressure. Comfortable working in international teams, adapting quickly to new tools and workflows, and taking ownership of technical challenges from first contact to resolution. Brings a strong foundation in software development and network administration, supported by formal OKJ qualifications and hands‑on experience in large organizations.",
+
+        "skills": [
+            "Windows administration",
+            "Active Directory & account management",
+            "Networking fundamentals (DNS, DHCP, TCP/IP)",
+            "Enterprise troubleshooting",
+            "Customer support & communication",
+            "Incident management",
+            "ITIL-based workflows",
+            "Remote support tools",
+            "Office 365 / Microsoft 365 administration",
+            "Hardware & peripheral diagnostics",
+            "User onboarding/offboarding",
+            "Ticketing systems (Jira, ServiceNow, Topdesk)",
+            "B2B portal administration & user lifecycle management",
+            "Access control & permission governance",
+            "Vendor and partner support coordination"
+        ],
+
+        "experience": [
+            {
+                "company": "AVL Hungary Kft.",
+                "role": "IT Specialist",
+                "start": "2022-Now",
+                "end": "present",
+                "location": "Budapest, Hungary",
+                "tasks": [
+                    "Provide IT support for internal users",
+                    "Manage accounts and permissions",
+                    "Troubleshoot hardware and software issues"
+                ]
+            },
+            {
+                "company": "Deutsche Telekom",
+                "role": "Incident Manager",
+                "start": "2021",
+                "end": "2021",
+                "location": "Budapest, Hungary",
+                "tasks": ["Monitor incidents", "Coordinate resolution teams"]
+            }
+        ],
+
+        "education": [
+            {
+                "school": "Soter-Line Oktatási Központ",
+                "degree": "Software Developer (OKJ)",
+                "year": 2021
+            },
+            {
+                "school": "Ruander Oktatóközpont",
+                "degree": "Network Administrator (OKJ)",
+                "year": 2017
+            }
+        ],
+
+        "languages": [
+            { "language": "Hungarian", "level": "Native" },
+            { "language": "English", "level": "Professional" },
+            { "language": "German", "level": "Semi-Professional" }
+        ],
+
+        "projects": [
+            {
+                "name": "Personal Website",
+                "description": "HTML/CSS/JS site with custom animations and UI effects.",
+                "url": "https://mercyfulfajd.github.io/"
+            },
+            {
+                "name": "FudgeRoll",
+                "description": "Hobby/Educational project, web based \"Choose your own adventure\" style books.(Hungarian)",
+                "url": "https://fudgeroll.hu"
+            }
+        ]
+    }
+]

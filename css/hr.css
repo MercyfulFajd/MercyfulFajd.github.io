@@ -1,0 +1,127 @@
+hr {
+    all: unset;
+    display: block;
+    width: 100%;
+    margin: 0.5em 0;
+    border: 0;
+    border-top: 1px solid currentColor;
+    box-sizing: content-box;
+}
+.hr {
+    /* probably worst practise I can think of*/
+    background: #f7f5f0; /* soft off‑white */
+    padding: 2rem;
+    border-radius: 12px;
+
+    /* subtle side pop */
+    box-shadow:
+        inset 8px 0 12px rgba(0, 0, 0, 0.05),
+        inset -8px 0 12px rgba(0, 0, 0, 0.05);
+
+    /* spacing between hr items */
+    display: flex;
+    flex-direction: column;
+    gap: 0, 3rem;
+
+    /* optional: slight border to frame the area */
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+.label {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+
+    /* sand background */
+    background: linear-gradient(to bottom right, #f3e9d7 0%, #f0e3c9 40%, #e8d7b8 100%);
+
+    /* glossy highlight */
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(109, 49, 49, 0.3);
+    border-bottom: none;
+}
+
+.label::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0));
+    pointer-events: none;
+}
+
+.label {
+    /* terracotta text */
+    color: rgb(201, 100, 59); /* your terracotta */
+    font-weight: 600;
+    letter-spacing: 0.5px;
+
+    /* subtle pop */
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.08),
+        inset 0 1px 2px rgba(255, 255, 255, 0.4);
+}
+/* AND NOW THE SHOWCASE */
+.normal {
+}
+
+.thick {
+    border-top-width: 3px;
+}
+
+.subtle {
+    border: 0;
+    height: 0.2em;
+    background: linear-gradient(
+        to right,
+        rgba(180, 150, 220, 0) 0%,
+        rgba(180, 150, 220, 0.35) 30%,
+        rgba(200, 170, 255, 0.95) 40%,
+        rgba(180, 150, 220, 0) 50%,
+        rgba(200, 170, 255, 0.95) 60%,
+        rgba(180, 150, 220, 0.35) 70%,
+        rgba(70, 50, 90, 0) 100%
+    );
+    border-radius: 4px;
+}
+.evil {
+    border: 0;
+    height: 0.2em;
+
+    background: linear-gradient(90deg, #1a0000, #4a0000, #1a0000);
+    filter: drop-shadow(0 0 4px #600);
+}
+
+.divine {
+    border: 0;
+    height: 8px;
+    background: linear-gradient(
+        to bottom,
+        #222 0%,
+        /* dark grey top */ #333 10%,
+        /* softer grey */ #ffffff 45%,
+        /* white-hot divine core */ #ffe680 55%,
+        /* soft golden aura */ #ffd700 60%,
+        /* deeper gold edge */ #333 90%,
+        /* fade back */ #222 100% /* dark grey bottom */
+    );
+    border-radius: 4px;
+    animation: divinePulse 3s ease-out forwards infinite;
+}
+
+@keyframes divinePulse {
+    0% {
+        filter: drop-shadow(0 0 0px #000);
+        opacity: 0.85;
+    }
+    40% {
+        filter: drop-shadow(0 0 16px #fff4b0);
+        opacity: 1;
+    }
+    100% {
+        filter: drop-shadow(0 0 2px #bfa200);
+        opacity: 0.92;
+    }
+}

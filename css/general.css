@@ -21,6 +21,15 @@ body {
     color: var(--font);
     font-family: sans-serif;
     padding: clamp(1rem, 3vw, 2.5rem);
+
+    background-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.45) 0%,
+        rgba(0, 0, 0, 0) 40%,
+        rgba(255, 255, 255, 0.05) 100%
+    );
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .card,
