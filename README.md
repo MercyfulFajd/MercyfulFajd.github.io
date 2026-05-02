@@ -14,6 +14,12 @@ My own little corner of the web / Az én kis sarkom a neten
 
 ---
 
+### Update - 2026.05.02
+
+Made some more tidying and cleaning. Also added the HR part. It's growing
+
+---
+
 ### Update - 2026.05.01
 
 Long time no free time. Made some touching up with the css, and removed some silly thing. Working on a Dice thrower
