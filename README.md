@@ -14,6 +14,12 @@ My own little corner of the web / Az én kis sarkom a neten
 
 ---
 
+### Update - 2026.05.16
+
+Finished the dicethrower for now, later I migth add animation or whatnot.
+
+---
+
 ### Update - 2026.05.02
 
 Made some more tidying and cleaning. Also added the HR part. It's growing

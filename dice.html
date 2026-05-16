@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="hu">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Kocka!!!</title>
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                min-height: 100vh;
+                background-color: rgba(231, 231, 215, 1);
+                padding-top: 3vh;
+            }
+
+            h1 {
+                color: rgba(182, 92, 60, 1);
+                text-align: center;
+                margin-bottom: 2vh;
+            }
+
+            main {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 2vh;
+                width: 90%;
+                max-width: 400px;
+            }
+
+            /* Interface */
+            #interface {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5vh;
+            }
+
+            #diceCount {
+                width: 100%;
+            }
+
+            #rollButton {
+                padding: 0.7rem 1.4rem;
+                font-size: 1rem;
+                background-color: rgba(182, 92, 60, 1);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                transition:
+                    transform 0.1s ease,
+                    background-color 0.2s ease;
+            }
+
+            #rollButton:active {
+                transform: scale(0.94);
+                background-color: rgba(160, 70, 45, 1);
+            }
+
+            /* Dice grid */
+            #pit {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: clamp(0.4rem, 1.5vw, 1rem);
+                width: 100%;
+                justify-items: center;
+            }
+
+            /* Dice base */
+            .dice {
+                width: 100%;
+                aspect-ratio: 1 / 1;
+                background-color: white;
+                border: 2px solid rgba(160, 70, 45, 1);
+                border-radius: 12px;
+                animation: pop 0.25s ease;
+            }
+
+            @keyframes pop {
+                0% {
+                    transform: scale(0.6);
+                    opacity: 0;
+                }
+                100% {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+            }
+
+            /* Number mode */
+            .dice.number-mode {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: clamp(24px, 10vmin, 48px);
+            }
+
+            /* Pip mode */
+            .dice.pip-mode {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(3, 1fr);
+                padding: 8%;
+                gap: 5%;
+            }
+
+            .pip {
+                width: 80%;
+                height: 80%;
+                background-color: rgba(120, 50, 30, 1);
+                border-radius: 50%;
+                justify-self: center;
+                align-self: center;
+            }
+
+            /* Footer */
+            footer {
+                width: 100%;
+                padding: 1.5vh 0;
+                display: flex;
+                justify-content: center;
+                gap: 4vh;
+                background-color: rgba(182, 92, 60, 0.15);
+                border-top: 2px solid rgba(182, 92, 60, 0.3);
+                position: fixed;
+                bottom: 0;
+            }
+
+            .icon-btn {
+                background: rgba(182, 92, 60, 1);
+                color: white;
+                border: none;
+                border-radius: 50%;
+                width: 6vh;
+                height: 6vh;
+                font-size: 3vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+            }
+
+            .icon-btn:active {
+                transform: scale(0.92);
+            }
+
+            /* Popup */
+            #authorPopup {
+                position: fixed;
+                bottom: 12vh;
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(182, 92, 60, 0.95);
+                color: white;
+                padding: 1rem 1.4rem;
+                border-radius: 10px;
+                font-size: 1rem;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.4s ease;
+            }
+
+            #authorPopup.show {
+                opacity: 1;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>~ KOCKA!!! ~</h1>
+
+        <main>
+            <section id="interface">
+                <label for="diceCount">Kockák száma: <span id="diceValue">3</span></label>
+
+                <input type="range" id="diceCount" min="1" max="5" value="3" list="diceMarks" />
+                <datalist id="diceMarks">
+                    <option value="1"></option>
+                    <option value="2"></option>
+                    <option value="3"></option>
+                    <option value="4"></option>
+                    <option value="5"></option>
+                </datalist>
+
+                <button id="rollButton">Dobás</button>
+            </section>
+
+            <section id="pit"></section>
+        </main>
+
+        <footer>
+            <button class="icon-btn" id="togglePips">⚅</button>
+            <button class="icon-btn" id="authorBtn">ℹ️</button>
+            <button class="icon-btn" id="goBackBtn">↩️</button>
+        </footer>
+
+        <div id="authorPopup">Készítette: Bánfai Károly Róbert</div>
+
+        <script>
+            const slider = document.getElementById('diceCount');
+            const display = document.getElementById('diceValue');
+            const rollButton = document.getElementById('rollButton');
+            const pit = document.getElementById('pit');
+            const togglePips = document.getElementById('togglePips');
+
+            let usePips = true; // DEFAULT: pip mode
+
+            const pipPatterns = {
+                1: [4],
+                2: [0, 8],
+                3: [0, 4, 8],
+                4: [0, 2, 6, 8],
+                5: [0, 2, 4, 6, 8],
+                6: [0, 2, 3, 5, 6, 8]
+            };
+
+            display.textContent = slider.value;
+
+            slider.addEventListener('input', () => {
+                display.textContent = slider.value;
+            });
+
+            rollButton.addEventListener('click', () => {
+                rollDice(Number(slider.value));
+            });
+
+            function rollDice(n) {
+                pit.innerHTML = '';
+
+                for (let i = 0; i < n; i++) {
+                    const div = document.createElement('div');
+                    div.className = 'dice';
+
+                    const value = Math.floor(Math.random() * 6) + 1;
+
+                    if (!usePips) {
+                        div.classList.add('number-mode');
+                        div.textContent = value;
+                    } else {
+                        div.classList.add('pip-mode');
+                        const pattern = pipPatterns[value];
+
+                        for (let j = 0; j < 9; j++) {
+                            const cell = document.createElement('div');
+                            if (pattern.includes(j)) {
+                                cell.className = 'pip';
+                            }
+                            div.appendChild(cell);
+                        }
+                    }
+
+                    pit.appendChild(div);
+                }
+            }
+
+            togglePips.addEventListener('click', () => {
+                usePips = !usePips;
+                togglePips.textContent = usePips ? '⚅' : '6';
+                rollDice(Number(slider.value));
+            });
+
+            const authorBtn = document.getElementById('authorBtn');
+            const authorPopup = document.getElementById('authorPopup');
+
+            authorBtn.addEventListener('click', () => {
+                authorPopup.classList.add('show');
+                setTimeout(() => authorPopup.classList.remove('show'), 3000);
+            });
+
+            document.getElementById('goBackBtn').addEventListener('click', () => {
+                if (history.length > 1) history.back();
+                else {
+                    authorPopup.textContent = 'Nincs hova visszamenni 🙂';
+                    authorPopup.classList.add('show');
+                    setTimeout(() => {
+                        authorPopup.textContent = 'Készítette: Bánfai Károly Róbert';
+                        authorPopup.classList.remove('show');
+                    }, 3000);
+                }
+            });
+
+            // Initial roll
+            rollDice(3);
+        </script>
+    </body>
+</html>
