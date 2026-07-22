@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="hu-HU">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>IT Room Bingo</title>
+        <style>
+            /* --- Alap stílusok --- */
+            body {
+                font-family: Arial, sans-serif;
+                background: #f7f3ef; /* világos bézs */
+                text-align: center;
+                margin: 0;
+                padding: 0;
+                color: #4a3f35; /* sötét terrakotta-barna */
+            }
+
+            h1 {
+                margin-top: 20px;
+                color: #8c4f3d; /* terrakotta */
+                font-size: 32px;
+                letter-spacing: 1px;
+            }
+
+            /* --- Bingo tábla --- */
+            #bingo {
+                width: 700px;
+                margin: 20px auto;
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                gap: 6px;
+            }
+
+            /* --- Cella stílusok --- */
+            .cell {
+                background: #fffaf4; /* nagyon világos bézs */
+                border: 2px solid #d7c7b8; /* bézs-barna keret */
+                min-height: 110px;
+                padding: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: bold;
+                cursor: pointer;
+                user-select: none;
+                border-radius: 6px;
+
+                /* finom árnyék */
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+
+                /* nyomtatásnál is jól látszik */
+                color: #4a3f35;
+            }
+
+            /* --- Kijelölt cella --- */
+            .cell.marked {
+                background: #c96f4a; /* terrakotta */
+                color: white;
+                border-color: #a85a3c;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+            }
+
+            /* --- Free cell --- */
+            .cell.free {
+                background: #e8c39e; /* homok-bézs */
+                color: #4a3f35;
+                border-color: #d1a97f;
+            }
+
+            /* --- Nyomtatási optimalizálás --- */
+            @media print {
+                body {
+                    background: white;
+                    color: black;
+                }
+
+                h1 {
+                    margin-top: 0;
+                    color: black;
+                }
+
+                #bingo {
+                    width: 100%;
+                    margin: 0;
+                    gap: 4px;
+                }
+
+                .cell {
+                    min-height: 95px;
+                    box-shadow: none; /* nyomtatón nem kell */
+                    border: 1px solid #000; /* kontrasztosabb */
+                    background: white;
+                    color: black;
+                }
+
+                .cell.marked {
+                    background: #d46a4a !important; /* terrakotta nyomtatóbarát */
+                    color: white !important;
+                    border-color: #000;
+                }
+
+                .cell.free {
+                    background: #f0d7b1 !important; /* bézs */
+                    color: black !important;
+                    border-color: #000;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>IT Room Bingo</h1>
+
+        <section aria-label="IT Room Bingo" id="bingo"></section>
+
+        <script>
+            // --- Bingo címkék (idézőjelek nélkül) ---
+            const labels = [
+                'Nem nyitottam jegyet, mert előbb gondoltam, beszélek veletek róla.',
+                'A nyomtató nem nyomtat!',
+                'Lassú a VPN.',
+                'Általános wetware probléma.',
+                'Ja, most már jó, csak ide kellett jönnöd!',
+                'Nagyon sürgős!... Egy hónapja fennáll!... Két hete vettük észre!... Most szóltam, hogy nem működik!... Most azonnal kellene!',
+                'A legutóbbi update óta...',
+                'Hallasz? Halló! Hallasz?',
+                'Otthon hagytam az egerem!',
+                'Tudtok adni egy headsetet egy napra?',
+                'Elkopott a headset párnája.',
+                'Kellene egy új headset!',
+                'Nem görget az egérgörgő.',
+                'BitLocker valami recoveryt kér.',
+                'Nem írok rád, csak megcsörgetlek, és miután nem veszed fel, azt sem írom meg, mit akartam.',
+                'Nem tudom a jelszavam.',
+                'Ja, hogy újra kell indítani!',
+                'Otthonra mit tudtok adni?',
+                'Mikor jön vissza az áram?',
+                'Valaki jöjjön gyorsan Dirk irodájába!',
+                'Nem működik a Barco!',
+                'Nem működik a kihangosító!',
+                'Barangol az internet.',
+                'Kaphatok iPhone-t?',
+                'Lehetne nagyobb?'
+            ];
+
+            // --- Kevegető ---
+            function shuffle(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
+
+            // --- Bingo board generálás ---
+            const freeLabel = labels[0];
+            const otherLabels = shuffle(labels.slice(1));
+
+            const board = [];
+            let idx = 0;
+
+            for (let i = 0; i < 25; i++) {
+                if (i === 12) {
+                    board.push(freeLabel);
+                } else {
+                    board.push(otherLabels[idx++]);
+                }
+            }
+
+            const bingo = document.getElementById('bingo');
+
+            board.forEach((text, index) => {
+                const cell = document.createElement('div');
+                cell.className = 'cell';
+
+                // Idézőjelek JS-ből
+                cell.textContent = `"${text}"`;
+
+                if (index === 12) {
+                    cell.classList.add('free', 'marked');
+                }
+
+                cell.addEventListener('click', () => {
+                    if (index !== 12) {
+                        cell.classList.toggle('marked');
+                    }
+                });
+
+                bingo.appendChild(cell);
+            });
+        </script>
+    </body>
+</html>
